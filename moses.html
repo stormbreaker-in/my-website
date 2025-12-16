@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HanMos COllection</title>
+  <meta name="description" content="Sustainable fashion at friendly prices—shop preloved clothing, accessories, and home finds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1216;
+      --panel:#161a20;
+      --text:#e9eef7;
+      --muted:#b7c2d6;
+      --brand:#4ad19a;
+      --accent:#eac54f;
+      --error:#ff6b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(16,20,26,0.8);backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid #222833;
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:0.2px;
+    }
+    .brand-badge{
+      width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#3bbd8a);
+      display:grid;place-items:center;color:#0a0d12;font-weight:800
+    }
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{padding:8px 10px;border-radius:8px}
+    .nav-links a:hover{background:#1b212b}
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns:1.15fr 0.85fr;gap:24px;
+      padding:36px 0 14px;
+    }
+    .hero-card{
+      background:linear-gradient(180deg,#1a2029 0%, #12161c 100%);
+      border:1px solid #242b36;border-radius:18px;overflow:hidden;
+    }
+    .hero-content{padding:28px}
+    .eyebrow{color:var(--brand);font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+    .hero h1{margin:8px 0 10px;font-size:32px;line-height:1.15}
+    .hero p{color:var(--muted)}
+    .hero-actions{display:flex;gap:12px;margin-top:18px}
+    .btn{
+      padding:10px 14px;border-radius:10px;border:1px solid #2a3140;background:#1b2028;color:var(--text);
+      transition:.15s ease;font-weight:600
+    }
+    .btn-primary{background:var(--brand);color:#0a0d12;border-color:#3bbd8a}
+    .btn:hover{transform:translateY(-1px)}
+    .promo{
+      background:linear-gradient(180deg,#191f27 0%, #12161c 100%);
+      border:1px solid #242b36;border-radius:18px;padding:22px
+    }
+    .promo h3{margin:0 0 8px}
+    .promo-list{display:grid;gap:10px}
+    .promo-item{display:flex;justify-content:space-between;background:#131821;border:1px dashed #2a3240;border-radius:12px;padding:10px 12px}
+    .promo-item .tag{color:var(--accent);font-weight:700}
+
+    /* Section */
+    section{padding:26px 0 10px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:14px}
+    .section-head h2{margin:0;font-size:22px}
+    .section-sub{color:var(--muted);font-size:14px}
+
+    /* Grid cards */
+    .grid{
+      display:grid;gap:16px;
+      grid-template-columns:repeat(4,1fr);
+    }
+    @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
+    @media (max-width:560px){.grid{grid-template-columns:1fr}}
+    .card{
+      background:linear-gradient(180deg,#1a2029 0%, #12161c 100%);
+      border:1px solid #242b36;border-radius:16px;overflow:hidden;display:flex;flex-direction:column
+    }
+    .card img{aspect-ratio:4/3;object-fit:cover}
+    .card-body{padding:12px}
+    .price-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+    .price{font-weight:700}
+    .pill{font-size:12px;border:1px solid #2a3240;border-radius:999px;padding:4px 8px;color:var(--muted)}
+    .add{margin-top:10px;display:flex;gap:8px}
+    .add .btn{flex:1}
+
+    /* About + Contact */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:800px){.split{grid-template-columns:1fr}}
+    .panel{background:#141922;border:1px solid #242b36;border-radius:16px;padding:16px}
+    .panel p{color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:24px;border-top:1px solid #222833}
+    .foot{
+      display:grid;grid-template-columns:1.1fr 0.9fr;gap:18px;padding:16px 0;
+    }
+    @media (max-width:800px){.foot{grid-template-columns:1fr}}
+    .foot small{color:#8f9bb1}
+    .socials{display:flex;gap:10px;margin-top:8px}
+    .socials a{border:1px solid #2a3240;border-radius:10px;padding:8px 10px;background:#141922}
+    .badge{display:inline-block;margin-left:8px;border:1px solid #2a3240;border-radius:999px;padding:4px 8px;color:#9bb2cf;font-size:12px}
+    .notice{color:#9bb2cf;font-size:12px}
+    .input, textarea{
+      width:100%;background:#12161c;border:1px solid #2a3240;color:var(--text);
+      border-radius:10px;padding:10px;margin-top:8px
+    }
+    textarea{min-height:110px;resize:vertical}
+    .req{color:var(--error);font-weight:700;font-size:12px;margin-left:6px}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge">♻︎</div>
+        <a href="#"><span>HanMos Collection</span></a>
+        <span class="badge">Preloved • Affordable • Local</span>
+      </div>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#new">New arrivals</a>
+        <a href="#best">Best deals</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-card">
+        <div class="hero-content">
+          <div class="eyebrow">Thrift smart, look fresh</div>
+          <h1 id="hero-title">Sustainable style without the price shock</h1>
+          <p>Curated thrift finds from Oyo—quality checked, cleaned, and ready to wear. Shop drops every week, limited stock.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#new">Shop new arrivals</a>
+            <a class="btn" href="#best">Browse best deals</a>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" alt="Thrift clothing rack with colorful pieces" />
+      </div>
+
+      <aside class="promo" aria-labelledby="promo-title">
+        <h3 id="promo-title">This week’s highlights</h3>
+        <div class="promo-list">
+          <div class="promo-item">
+            <span>Chingavi gold</span><span class="tag">₦10,000</span>
+          </div>
+          <div class="promo-item">
+            <span>Roseberry</span><span class="tag">₦8,500</span>
+          </div>
+          <div class="promo-item">
+            <span><ol><li>raw vietnamese Hair<span class="tag">₦320,000</span></li><li>luxary vietnamese Hair<span class="tag">₦120,000</span></li></ol></span>
+          </div>
+          <div class="promo-item">
+            <span> (shoes)</span><span class="tag">₦43000-₦50000</span>
+          </div>
+        </div>
+        <p class="notice" style="margin-top:10px">Free pickup in Ibadan. Nationwide delivery available, fees vary by courier.</p>
+      </aside>
+    </section>
+
+    <!-- New arrivals -->
+    <section id="new" aria-labelledby="new-title">
+      <div class="section-head">
+        <div>
+          <h2 id="new-title">New arrivals</h2>
+          <div class="section-sub">Freshly sourced pieces—limited quantities.</div>
+        </div>
+        <a class="btn" href="#contact">Request a style</a>
+      </div>
+      <div class="grid">
+        <!-- Product card -->
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1516765124010-b3f5731d96e6?q=80&w=1200&auto=format&fit=crop" alt="Vintage varsity jacket in navy" />
+          <div class="card-body">
+            <h3>Rosebarry Ankara </h3>
+            <p class="pill">Condition: Excellent</p>
+            <div class="price-row">
+              <span class="price">₦6,500</span>
+              <span class="pill">50 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f8c57?q=80&w=1200&auto=format&fit=crop" alt="Classic light-wash denim jeans" />
+          <div class="card-body">
+            <h3>Chingavi GOld</h3>
+            <p class="pill">Condition:Excellent</p>
+            <div class="price-row">
+              <span class="price">₦10,000</span>
+              <span class="pill">20 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1518118282203-0d0f548b84c3?q=80&w=1200&auto=format&fit=crop" alt="Leather handbag on table" />
+          <div class="card-body">
+            <h3>Leather Handbag — Tan</h3>
+            <p class="pill">Condition: Excellent</p>
+            <div class="price-row">
+              <span class="price">₦7,200</span>
+              <span class="pill">20 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1520975693416-35a36b6bdb59?q=80&w=1200&auto=format&fit=crop" alt="Children's clothes on hanger" />
+          <div class="card-body">
+            <h3>Kids Tees Bundle (3 pcs)</h3>
+            <p class="pill">Condition: Very good</p>
+            <div class="price-row">
+              <span class="price">₦3,300</span>
+              <span class="pill">30 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Best deals -->
+    <section id="best" aria-labelledby="best-title">
+      <div class="section-head">
+        <div>
+          <h2 id="best-title">Best deals</h2>
+          <div class="section-sub">Quality pieces at bargain prices.</div>
+        </div>
+        <a class="btn" href="#contact">Get notified</a>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1512436991657-0d1a1b9623e3?q=80&w=1200&auto=format&fit=crop" alt="Assorted shirts on rack" />
+          <div class="card-body">
+            <h3>Graphic Tee — Assorted (L)</h3>
+            <p class="pill">Condition: Good</p>
+            <div class="price-row">
+              <span class="price">₦2,200</span>
+              <span class="pill">5 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1512436991611-3493cb0ca04b?q=80&w=1200&auto=format&fit=crop" alt="Flannel shirt hanging" />
+          <div class="card-body">
+            <h3>Flannel Shirt — Red Check (M)</h3>
+            <p class="pill">Condition: Excellent</p>
+            <div class="price-row">
+              <span class="price">₦3,000</span>
+              <span class="pill">2 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1532704166522-4780c1f30d77?q=80&w=1200&auto=format&fit=crop" alt="Pair of sneakers on shelf" />
+          <div class="card-body">
+            <h3>Casual Sneakers — White (42)</h3>
+            <p class="pill">Condition: Good</p>
+            <div class="price-row">
+              <span class="price">₦5,500</span>
+              <span class="pill">1 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1503342212252-2bf07fbd8b47?q=80&w=1200&auto=format&fit=crop" alt="Assorted accessories on table" />
+          <div class="card-body">
+            <h3>Accessories Bundle</h3>
+            <p class="pill">Condition: Mixed</p>
+            <div class="price-row">
+              <span class="price">₦2,800</span>
+              <span class="pill">4 in stock</span>
+            </div>
+            <div class="add">
+              <button class="btn btn-primary" type="button">Add to cart</button>
+              <button class="btn" type="button">Details</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- About + Contact -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <h2 id="about-title">About our thrift store</h2>
+        <a class="btn" href="#contact">Sell your items</a>
+      </div>
+      <div class="split">
+        <div class="panel">
+          
+        </div>
+        <div class="panel">
+          <h3>How we source</h3>
+          <p>Local community trades, estate sales, and carefully vetted suppliers. We avoid fast fashion knockoffs and prioritize timeless, durable pieces.</p>
+          <p>Want to consign? We offer cash or store credit for accepted items. Turnaround: 2–3 days after drop-off.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-head">
+        <h2 id="contact-title">Contact and requests</h2>
+        <span class="section-sub">Pickup hours: Mon–Sat, 10:00–18:00 (Olude)</span>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3>Message us</h3>
+          <form id="contact-form" novalidate>
+            <label>Full name <span class="req">*</span></label>
+            <input class="input" type="text" name="name" placeholder="Your name" required />
+            <label>Email or WhatsApp <span class="req">*</span></label>
+            <input class="input" type="text" name="contact" placeholder="you@example.com or +234…" required />
+            <label>What are you looking for?</label>
+            <textarea name="message" placeholder="Sizes, colors, budget…"></textarea>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <button class="btn btn-primary" type="submit">Send request</button>
+              <button class="btn" type="reset">Clear</button>
+            </div>
+            <p id="form-status" class="notice" style="margin-top:8px"></p>
+          </form>
+        </div>
+        <div class="panel">
+          <h3>Find us</h3>
+          <p>HanMos Collection,Ibadan, Oyo State, Nigeria</p>
+          <p>Pickups by appointment. DM for directions and exact address after order confirmation.</p>
+          <div class="socials" aria-label="Social links">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="WhatsApp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <strong>HanMos Collection</strong>
+        <p class="notice">Sustainable fashion, fair prices.  <span id="year"></span></p>
+      </div>
+      <div>
+        <small>Shipping: 1–3 days within SW Nigeria, 3–5 days nationwide. Returns accepted within 7 days if item condition unchanged.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple client-side form check
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const contact = form.contact.value.trim();
+      if (!name || !contact) {
+        status.textContent = 'Please fill your name and a contact (email or WhatsApp).';
+        status.style.color = '#ff6b6b';
+        return;
+      }
+      status.textContent = 'Thanks! We’ll reply within 24 hours.';
+      status.style.color = '#9bb2cf';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
